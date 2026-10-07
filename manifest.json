@@ -1,0 +1,14 @@
+{
+  "id": "ats-score",
+  "name": "ATS Self-Score",
+  "version": "0.1.0",
+  "apiVersion": 1,
+  "description": "Score the candidate behind cv.md the way an automated resume screener would, out of 120, with a dated history so the trend shows as the CV improves",
+  "hooks": ["ingest"],
+  "requiredEnv": [],
+  "allowedHosts": [],
+  "entry": "index.mjs",
+  "skill": "skill.md",
+  "humanInTheLoop": true,
+  "homepage": "https://github.com/jashan190/career-ops-plugin-ats-score"
+}
