@@ -133,6 +133,18 @@ check(
   'no egress, no keys, no network or process imports in the entry',
 );
 
+// The ingest hook is a stub, so a run must say where the scorer actually is
+// rather than ending on a bare "0 found" (the same courtesy h1b-sponsor's stub
+// extends). Run it for real with a fake ctx and check what it says.
+const logged = [];
+const result = await (await import(path.join(here, '..', manifest.entry || 'index.mjs'))).default.ingest({
+  log: (...args) => logged.push(args.join(' ')),
+});
+check(
+  Array.isArray(result) && result.length === 0 && logged.some((l) => l.includes('node plugins.mjs skill ats-score')),
+  'stub ingest returns no jobs and logs where the real surface is',
+);
+
 if (failed) {
   console.error(`\n${failed} check(s) failed`);
   process.exit(1);
